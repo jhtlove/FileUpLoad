@@ -3,21 +3,23 @@ import { Injectable } from '@angular/core';
 import { FileInfo } from './table.component';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+// import { map } from 'rxjs/operators';
+// import * as express from 'express';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {
 
-  private tableUrl = 'table';
+  private tableUrl = '/api/table';
   public subject: Subject<FileInfo> = new Subject<FileInfo>();
 
   constructor(private http: HttpClient, private loginService: LoginService) {
   }
 
   getDatas(): Observable<FileInfo[]> {
-    return this.http.get<FileInfo[]>(this.tableUrl,{params:{}});
+    return this.http.get<FileInfo[]>(this.tableUrl);
+
 
     // 向后台post数据的写法如下
     // let data = new URLSearchParams();
