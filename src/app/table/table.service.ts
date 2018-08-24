@@ -1,6 +1,7 @@
-import {Injectable} from '@angular/core';
-import {FileInfo} from './table.component';
-import {Observable, Subject} from 'rxjs';
+import { LoginService } from './../service/login.service';
+import { Injectable } from '@angular/core';
+import { FileInfo } from './table.component';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -12,11 +13,11 @@ export class TableService {
   private tableUrl = 'table';
   public subject: Subject<FileInfo> = new Subject<FileInfo>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private loginService: LoginService) {
   }
 
   getDatas(): Observable<FileInfo[]> {
-    return this.http.get<FileInfo[]>(this.tableUrl,);
+    return this.http.get<FileInfo[]>(this.tableUrl,{params:{}});
 
     // 向后台post数据的写法如下
     // let data = new URLSearchParams();
