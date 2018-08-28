@@ -1,17 +1,26 @@
+.btnCol{
+  margin-bottom: 10px;
+}
+
+.inline{
+  display: inline-block;
+}
+
 #btnFind
 {
-  position: absolute;
-  top:5px;
-  left:12px;
+  /* position: absolute; */
+  /* top:5px; */
+  /* left:12px; */
   font-size:12px;
   z-index: 100;
+  margin-right: 10px;
 }
 
 #btnUpload
 {
-  position: absolute;
-  top:5px;
-  left:85px;
+  /* position: absolute; */
+  /* top:5px; */
+  /* left:85px; */
   font-size:12px;
   z-index: 100;
 }

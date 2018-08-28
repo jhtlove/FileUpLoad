@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 // import { from '@types/bootstrap';
 // import * as bootstrap from "bootstrap";
@@ -21,6 +20,9 @@ import { UserComponent } from './user/user.component';
 import { AppRouteModule } from './app-route/app-route.module';
 import { LoginService } from './service/login.service';
 import { FileFilterPipe } from './table/file-filter.pipe';
+import { TableModule } from 'primeng/table';
+import { FileUploadModule } from 'primeng/fileupload'
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { FileFilterPipe } from './table/file-filter.pipe';
     HttpClientModule,
     DialogModule,
     BrowserAnimationsModule,
-    AppRouteModule  // 必须引入
+    AppRouteModule,  // 必须引入
+    TableModule,
+    FileUploadModule
   ],
   providers: [LoginService, LoginGuard],
   bootstrap: [AppComponent]

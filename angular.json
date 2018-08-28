@@ -31,9 +31,9 @@
               "node_modules/admin-lte/dist/css/skins/skin-blue.css",
               "node_modules/admin-lte/plugins/iCheck/square/blue.css",
               "node_modules/bootstrap-fileinput/css/fileinput.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+           
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/bootstrap/theme.css",
+              "node_modules/primeng/resources/themes/flick/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
@@ -41,7 +41,6 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/admin-lte/dist/js/app.min.js",
               "node_modules/admin-lte/plugins/iCheck/icheck.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/bootstrap-fileinput/js/fileinput.js",
               "node_modules/bootstrap-fileinput/js/locales/zh.js"
             ]

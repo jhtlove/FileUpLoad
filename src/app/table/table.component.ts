@@ -6,25 +6,74 @@ import { debounceTime } from 'rxjs/operators';
 // import * as $ from 'jquery';
 // import * as bootstrap from "bootstrap";
 
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class TableComponent implements OnInit, OnDestroy {
 
   display = false;
 
-  files: FileInfo[];
-  // = [
-  //   new FileInfo('css权威指南.txt', '2018-08-22 17:24', 'css权威指南', 1.5, 'txt', 'test'),
-  //   new FileInfo('html权威指南.pdf', '2018-08-21 17:24', 'html权威指南', 1.5, 'pdf', 'test'),
-  //   new FileInfo('javascritp权威指南.pdf', '2018-08-23 17:24', 'javascritp权威指南', 1.5, 'pdf', 'test')
-  // ];
+  cols: any[] = [
+    {
+      header: '序号',
+      field: ''
+    },
+    {
+      header: '文件名',
+      field: 'fileName'
+    },
+    {
+      header: '标题',
+      field: 'title'
+    },
+    {
+      header: '上传日期',
+      field: 'upLoadDate'
+    },
+    {
+      header: '大小',
+      field: 'size'
+    },
+    {
+      header: '文件类型',
+      field: 'fileType'
+    },
+    {
+      header: '下载',
+      field: 'downloadLink'
+    }
+  ];
 
-  fileFilterControl: FormControl = new FormControl();
+  files: FileInfo[];
+
+  // fileFilterControl: FormControl = new FormControl();
 
   keyWord: string;
+
+
+  uploadedFiles: any[] = [];
+
+  initFileUpload() {
+    $('#input-id').fileinput({
+      uploadUrl: 'test/upload',
+      language: 'zh',
+      // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
+      maxFileCount: 5,
+      maxFileSize: 3000,
+      previewFileType: 'any'
+    });
+  }
+
+  onUpload(event) {
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+
+    // this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  }
 
   constructor(public tableService: TableService, public loginService: LoginService) {
   }
@@ -36,30 +85,18 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewChecked {
   //   // Add 'implements DoCheck' to the class.
   //   console.log('doCheck!');
   // }
+
   // ngOnInit ngAfterContentInit 执行 在 ngFor 组织模板之前？？？
   ngOnInit() {
 
     this.getDatas();
-
+    this.initFileUpload();
     // 暂时没用到的过滤
     // this.fileFilterControl.valueChanges
     //   .pipe(debounceTime(500))
     //   .subscribe(value => this.keyWord = value);
 
-    $('#input-id').fileinput({
-      uploadUrl: 'test/upload',
-      language: 'zh',
-      // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
-      maxFileCount: 5,
-      maxFileSize: 3000,
-      previewFileType: 'any'
-    });
-  }
 
-  // ngAfterViewInit() {
-  // }
-
-  ngAfterViewChecked() {
   }
 
   ngOnDestroy() {
@@ -70,18 +107,17 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.tableService.getDatas().subscribe(data => {
       this.files = data; // 赋值后 页面拿数据组织界面 *ngFor 然后再触发 dataTable
     }
-
     );
   }
 
 
   showDialog() {
-    // this.display = true;
+    this.display = true;
     $('#fileupload-modal').modal('show');
   }
 
   find() {
-
+    this.getDatas();
   }
 
   close() {

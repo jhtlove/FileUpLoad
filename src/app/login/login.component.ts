@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    const checkBox = document.getElementById('rememberMe');
-    const isChecked = checkBox.checked;
+    // const checkBox = document.getElementById('rememberMe');
+    // const isChecked = checkBox.checked;
 
     this.loginService.setUserInfo(this.user);
     const res = this.loginService.doLogin();
