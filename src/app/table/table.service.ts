@@ -11,17 +11,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TableService {
 
-  private tableUrl = '/api/table';
-  public subject: Subject<FileInfo> = new Subject<FileInfo>();
+  private tableUrl = '/EzaRest/grwj/selectWjml.do?ygid=' + sessionStorage.getItem('currentUser');
+   
 
   constructor(private http: HttpClient, private loginService: LoginService) {
   }
 
-  getDatas(): Observable<FileInfo[]> {
-    return this.http.get<FileInfo[]>(this.tableUrl);
-  
-
-  
+  getDatas(): Observable<any> {
+    return this.http.get<any>(this.tableUrl);
     // 向后台post数据的写法如下
     // let data = new URLSearchParams();
     // data.append('email', user.email);

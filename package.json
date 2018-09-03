@@ -21,12 +21,10 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@types/bootstrap-fileinput": "0.0.7",
-  
     "admin-lte": "^2.3.11",
     "bootstrap": "^3.3.7",
     "bootstrap-fileinput": "^4.4.8",
     "core-js": "^2.5.4",
- 
     "echarts": "^4.1.0",
     "font-awesome": "^4.7.0",
     "ionicons": "^4.2.4",

@@ -40,7 +40,7 @@
               <th>序号</th>
               <th>文件名</th>
               <th>标题</th>
-              <th class="sorting">上传日期<a (click)="toggle('upLoadDate')"><i [class]="sortClass"></i></a></th>
+              <th class="sorting">上传日期<a (click)="toggle('SCRQ')"><i [class]="sortClass"></i></a></th>
               <th>大小</th>
               <th>文件类型</th>
               <th>下载</th>
@@ -49,15 +49,15 @@
 
           <tbody>
 
-            <tr *ngFor="let file of files | fileFilter: 'fileName': keyWord | fileSort: sortField: isAsc; let i=index">
+            <tr *ngFor="let file of files | fileFilter: 'SWJM': keyWord | fileSort: sortField: isAsc; let i=index">
               <td>{{i+1}}</td>
-              <td>{{file.fileName}}</td>
-              <td>{{file.title}}</td>
-              <td>{{file.upLoadDate}}</td>
-              <td>{{file.size}}</td>
-              <td>{{file.fileType}}</td>
+              <td>{{file.SWJM}}</td>
+              <td>{{file.STITLE}}</td>
+              <td>{{file.SCRQ}}</td>
+              <td>{{file.WJDX}}</td>
+              <td>{{file.WJLX}}</td>
               <td>
-                <a href="{{file.downloadLink}}" download="{{file.fileName}}">下载</a>
+                <a href="/EzaRest{{file.SPATH}}/{{file.SWJM}}"><i class="fa fa-download"></i>下载</a>
               </td>
             </tr>
           </tbody>

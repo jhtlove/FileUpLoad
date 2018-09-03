@@ -13,9 +13,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     $('input').iCheck({
+  
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
+      increaseArea: '20%'  // optional
     });
     let userName = localStorage.getItem('currentUser');
     if (userName) {
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     const checkBox = document.getElementById('rememberMe');
     const isChecked = checkBox.checked;
-
+  
     this.loginService.setUserInfo(this.user);
     const res = this.loginService.doLogin();
     if (res === true) {

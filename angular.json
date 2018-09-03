@@ -30,11 +30,7 @@
               "node_modules/admin-lte/dist/css/AdminLTE.css",
               "node_modules/admin-lte/dist/css/skins/skin-blue.css",
               "node_modules/admin-lte/plugins/iCheck/square/blue.css",
-              "node_modules/bootstrap-fileinput/css/fileinput.css",
-           
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/flick/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/bootstrap-fileinput/css/fileinput.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

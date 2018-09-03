@@ -56,6 +56,7 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.getDatas();
+
     this.initFileUpload();
 
     this.fileFilterControl.valueChanges
@@ -71,7 +72,13 @@ export class TableComponent implements OnInit, OnDestroy {
 
   getDatas(): void {
     this.tableService.getDatas().subscribe(data => {
-      this.files = data; // 赋值后 页面拿数据组织界面 *ngFor 然后再触发 dataTable
+    
+      let isSuccesed = data.state;
+      if (!isSuccesed) {
+        alert('查询个人文件信息失败：' + data.error);
+      } else {
+        this.files = data.row01; // 赋值后 页面拿数据组织界面 *ngFor 然后再触发 dataTable
+      }
     }
     );
   }
@@ -116,12 +123,12 @@ export class TableComponent implements OnInit, OnDestroy {
 
 export class FileInfo {
   constructor(
-    public fileName: string,
-    public upLoadDate: string,
-    public title: string,
-    public size: number,
-    public fileType: string,
-    public downloadLink: string
+    public SWJM: string,
+    public SCRQ: string,
+    public STITLE: string,
+    public WJDX: string,
+    public WJLX: string,
+    public SPATH: string
   ) {
   }
 }
