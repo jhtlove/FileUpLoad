@@ -3,9 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-// import { from '@types/bootstrap';
-// import * as bootstrap from "bootstrap";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,9 +19,8 @@ import { UserComponent } from './user/user.component';
 import { AppRouteModule } from './app-route/app-route.module';
 import { LoginService } from './service/login.service';
 import { FileFilterPipe } from './table/file-filter.pipe';
-import { TableModule } from 'primeng/table';
-import { FileUploadModule } from 'primeng/fileupload'
-import { DialogModule } from 'primeng/dialog';
+import { FileSortPipe } from './table/file-sort.pipe';
+
 
 @NgModule({
   declarations: [
@@ -36,17 +34,16 @@ import { DialogModule } from 'primeng/dialog';
     FileUploadComponent,
     LoginComponent,
     UserComponent,
-    FileFilterPipe
+    FileFilterPipe,
+    FileSortPipe
   ],
   imports: [
     BrowserModule,
     FormsModule, // 处理表单的模块
+    ReactiveFormsModule,
     HttpClientModule,
-    DialogModule,
     BrowserAnimationsModule,
-    AppRouteModule,  // 必须引入
-    TableModule,
-    FileUploadModule
+    AppRouteModule  // 必须引入
   ],
   providers: [LoginService, LoginGuard],
   bootstrap: [AppComponent]

@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   doLogin(): boolean {
-    if (this.user.userName === '1' && this.user.pwd === '1') {
+    if (this.user.userName === '01229' && this.user.pwd === '1') {
       return true;
     }
     return false;

@@ -27,3 +27,11 @@
 /*.box-body button:hover{*/
   /*cursor: pointer;*/
 /*}*/
+
+thead .sorting{
+  cursor: pointer;
+}
+
+thead i{
+  margin-left:5px;
+}

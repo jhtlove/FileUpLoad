@@ -16,43 +16,17 @@ export class TableComponent implements OnInit, OnDestroy {
 
   display = false;
 
-  cols: any[] = [
-    {
-      header: '序号',
-      field: ''
-    },
-    {
-      header: '文件名',
-      field: 'fileName'
-    },
-    {
-      header: '标题',
-      field: 'title'
-    },
-    {
-      header: '上传日期',
-      field: 'upLoadDate'
-    },
-    {
-      header: '大小',
-      field: 'size'
-    },
-    {
-      header: '文件类型',
-      field: 'fileType'
-    },
-    {
-      header: '下载',
-      field: 'downloadLink'
-    }
-  ];
-
   files: FileInfo[];
 
-  // fileFilterControl: FormControl = new FormControl();
+  fileFilterControl: FormControl = new FormControl();
 
   keyWord: string;
 
+  sortField: string;
+
+  isAsc: boolean;
+
+  sortClass = 'fa fa-unsorted';
 
   uploadedFiles: any[] = [];
 
@@ -65,14 +39,6 @@ export class TableComponent implements OnInit, OnDestroy {
       maxFileSize: 3000,
       previewFileType: 'any'
     });
-  }
-
-  onUpload(event) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
-
-    // this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
 
   constructor(public tableService: TableService, public loginService: LoginService) {
@@ -91,10 +57,10 @@ export class TableComponent implements OnInit, OnDestroy {
 
     this.getDatas();
     this.initFileUpload();
-    // 暂时没用到的过滤
-    // this.fileFilterControl.valueChanges
-    //   .pipe(debounceTime(500))
-    //   .subscribe(value => this.keyWord = value);
+
+    this.fileFilterControl.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe(value => this.keyWord = value);
 
 
   }
@@ -130,6 +96,21 @@ export class TableComponent implements OnInit, OnDestroy {
 
   delFile() {
     console.log('删除：');
+  }
+
+  toggle(field: string) {
+    this.sortField = field;
+    if (this.sortClass === 'fa fa-unsorted') {
+      // 点一下升序
+      this.sortClass = 'fa fa-sort-asc';
+      this.isAsc = true;
+    } else if (this.sortClass === 'fa fa-sort-asc') {
+      this.sortClass = 'fa fa-sort-desc';
+      this.isAsc = false;
+    } else {
+      this.sortClass = 'fa fa-sort-asc';
+      this.isAsc = true;
+    }
   }
 }
 

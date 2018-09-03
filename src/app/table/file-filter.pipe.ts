@@ -10,8 +10,9 @@ export class FileFilterPipe implements PipeTransform {
       return files;
     }
     return files.filter(file => {
+    
       const itemFieldValue = file[field].toLowerCase();
-      return itemFieldValue.indexOf(keyword) > 0;
+      return itemFieldValue.indexOf(keyword.toLowerCase()) > -1;
     });
   }
 

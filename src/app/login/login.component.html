@@ -6,7 +6,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">登录</p>
   
-    <form action="../../index2.html" method="post">
+    <form #loginForm>
       <div class="form-group has-feedback">
         <input  [(ngModel)]="user.userName" name="userName" required type="text" class="form-control" placeholder="用户名">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

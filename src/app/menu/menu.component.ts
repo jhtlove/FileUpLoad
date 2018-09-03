@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     // this.userName = this.loginService.getUserName();
-    this.userName = 'test';
+    this.userName = sessionStorage.getItem('currentUser');
   }
 
 }

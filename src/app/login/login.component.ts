@@ -17,16 +17,24 @@ export class LoginComponent implements OnInit {
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
+    let userName = localStorage.getItem('currentUser');
+    if (userName) {
+      this.user.userName = userName;
+    }
   }
 
   onLogin() {
-    // const checkBox = document.getElementById('rememberMe');
-    // const isChecked = checkBox.checked;
+    const checkBox = document.getElementById('rememberMe');
+    const isChecked = checkBox.checked;
 
     this.loginService.setUserInfo(this.user);
     const res = this.loginService.doLogin();
     if (res === true) {
+      if (isChecked) {
+        localStorage.setItem('currentUser', this.user.userName);
+      }
       sessionStorage.setItem('logSuccessed', 'true');
+      sessionStorage.setItem('currentUser', this.user.userName);
       this.router.navigateByUrl('user');
     }
   }

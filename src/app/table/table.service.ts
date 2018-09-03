@@ -20,6 +20,8 @@ export class TableService {
   getDatas(): Observable<FileInfo[]> {
     return this.http.get<FileInfo[]>(this.tableUrl);
   
+
+  
     // 向后台post数据的写法如下
     // let data = new URLSearchParams();
     // data.append('email', user.email);

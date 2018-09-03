@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FileSortPipe implements PipeTransform {
 
   transform(list: any[], sortField: string, isAsc: boolean): any {
-    if (!sortField || isAsc === undefined) {
+    if (!list || !sortField || isAsc === undefined) {
       return list;
     }
     return list.sort(function (a, b) {
