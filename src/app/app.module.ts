@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -43,7 +43,8 @@ import { FileSortPipe } from './table/file-sort.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRouteModule  // 必须引入
+    AppRouteModule,  // 必须引入
+    ModalModule.forRoot()
   ],
   providers: [LoginService, LoginGuard],
   bootstrap: [AppComponent]

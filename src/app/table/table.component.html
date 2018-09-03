@@ -5,7 +5,7 @@
         <i class="fa fa-search" aria-hidden="true"></i>
         查询
       </button>
-      <button id="btnUpload" class="btn btn-info" (click)="showDialog()">
+      <button id="btnUpload" class="btn btn-info" (click)="openModal(template)">
         <i class="fa fa-upload" aria-hidden="true"></i>
         上载
       </button>
@@ -18,10 +18,11 @@
 
         <div class="box-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
-            <input type="text" name="table_search" [formControl]="fileFilterControl" class="form-control pull-right" placeholder="文件名">
+            <input type="text" name="table_search" [formControl]="fileFilterControl" class="form-control pull-right"
+              placeholder="文件名">
 
             <div class="input-group-btn">
-              <div class="btn btn-default" style="cursor:default">  
+              <div class="btn btn-default" style="cursor:default">
                 <i class="fa fa-search"></i>
               </div>
             </div>
@@ -65,61 +66,22 @@
       </div>
       <!-- /.box-body -->
     </div>
-    <!-- <div class="content-section implementation">
-      <p-table #dt [columns]="cols" [value]="files" [paginator]="true" [rows]="2">
-        <ng-template pTemplate="caption">
-          <div style="text-align: right">
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" pInputText size="50" placeholder="查找文件" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-          </div>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-          <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-              {{col.header}}
-              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-file>
-          <tr>
-            <td>{{index+1}}</td>
-    <td>{{file.fileName}}</td>
-    <td>{{file.title}}</td>
-    <td>{{file.upLoadDate}}</td>
-    <td>{{file.size}}</td>
-    <td>{{file.fileType}}</td>
-    <td>
-      <a href="{{file.downloadLink}}" download="{{file.fileName}}">下载</a>
-    </td>
-    </tr>
-    </ng-template>
-    </p-table>
-  </div> -->
   </div>
 </div>
 
-<!--上传文件模态框-->
-<div class="modal fade" tabindex="-1" role="dialog" id="fileupload-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-        <h4 class="modal-title">文件上传</h4>
-      </div>
-      <div class="modal-body">
-        <!--上传-->
-        <div id="main">
-          <!--when initializing plugin via javascript (step 2a), you MUST NOT attach the CSS class file to the input-->
-          <input id="input-id" type="file" multiple>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
+<!-- ng-x 模态框 -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">文件上传</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+  <div class="modal-body">
+    <!--上传-->
+    <form action="UploadFile.ashx" method="post" enctype="multipart/form-data">
+      <input type="file" name="fileUpload" />
+      <input type="submit" value="上传文件" />
+    </form>
+  </div>
+</ng-template>

@@ -1,8 +1,10 @@
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, OnDestroy, AfterViewInit, DoCheck, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { TableService } from './table.service';
 import { LoginService } from '../service/login.service';
 import { debounceTime } from 'rxjs/operators';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 // import * as $ from 'jquery';
 // import * as bootstrap from "bootstrap";
 
@@ -13,6 +15,8 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit, OnDestroy {
+
+  modalRef: BsModalRef;
 
   display = false;
 
@@ -30,18 +34,22 @@ export class TableComponent implements OnInit, OnDestroy {
 
   uploadedFiles: any[] = [];
 
-  initFileUpload() {
-    $('#input-id').fileinput({
-      uploadUrl: 'test/upload',
-      language: 'zh',
-      // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
-      maxFileCount: 5,
-      maxFileSize: 3000,
-      previewFileType: 'any'
-    });
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
-  constructor(public tableService: TableService, public loginService: LoginService) {
+  // initFileUpload() {
+  //   $('#input-id').fileinput({
+  //     uploadUrl: 'test/upload',
+  //     language: 'zh',
+  //     // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
+  //     maxFileCount: 5,
+  //     maxFileSize: 3000,
+  //     previewFileType: 'any'
+  //   });
+  // }
+
+  constructor(public tableService: TableService, public loginService: LoginService, private modalService: BsModalService) {
   }
 
   // DoCheck
@@ -54,16 +62,11 @@ export class TableComponent implements OnInit, OnDestroy {
 
   // ngOnInit ngAfterContentInit 执行 在 ngFor 组织模板之前？？？
   ngOnInit() {
-
     this.getDatas();
-
-    this.initFileUpload();
 
     this.fileFilterControl.valueChanges
       .pipe(debounceTime(500))
       .subscribe(value => this.keyWord = value);
-
-
   }
 
   ngOnDestroy() {
@@ -72,7 +75,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   getDatas(): void {
     this.tableService.getDatas().subscribe(data => {
-    
+
       let isSuccesed = data.state;
       if (!isSuccesed) {
         alert('查询个人文件信息失败：' + data.error);
@@ -81,12 +84,6 @@ export class TableComponent implements OnInit, OnDestroy {
       }
     }
     );
-  }
-
-
-  showDialog() {
-    this.display = true;
-    $('#fileupload-modal').modal('show');
   }
 
   find() {

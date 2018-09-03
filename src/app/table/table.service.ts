@@ -1,6 +1,5 @@
 import { LoginService } from './../service/login.service';
 import { Injectable } from '@angular/core';
-import { FileInfo } from './table.component';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 // import { map } from 'rxjs/operators';
@@ -12,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class TableService {
 
   private tableUrl = '/EzaRest/grwj/selectWjml.do?ygid=' + sessionStorage.getItem('currentUser');
-   
+
 
   constructor(private http: HttpClient, private loginService: LoginService) {
   }
