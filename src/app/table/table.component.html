@@ -79,9 +79,9 @@
   </div>
   <div class="modal-body">
     <!--上传-->
-    <form action="UploadFile.ashx" method="post" enctype="multipart/form-data">
-      <input type="file" name="fileUpload" />
-      <input type="submit" value="上传文件" />
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" id="inputFile" name="fileInput" class="inline">
+      <input type="submit" class="btn btn-default btn-sm mr_left" value="上传">
     </form>
   </div>
 </ng-template>
