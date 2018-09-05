@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('logSuccessed', 'true');
       sessionStorage.setItem('currentUser', this.user.userName);
       this.router.navigateByUrl('user');
+      window.location.reload();
     }
   }
 
