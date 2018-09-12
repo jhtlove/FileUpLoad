@@ -38,16 +38,17 @@ export class TableComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(template);
   }
 
-  // initFileUpload() {
-  //   $('#input-id').fileinput({
-  //     uploadUrl: 'test/upload',
-  //     language: 'zh',
-  //     // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
-  //     maxFileCount: 5,
-  //     maxFileSize: 3000,
-  //     previewFileType: 'any'
-  //   });
-  // }
+  initFileUpload() {
+    let inputElem: any = $('#input-id');
+    inputElem.fileinput({
+      uploadUrl: 'test/upload',
+      language: 'zh',
+      // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
+      maxFileCount: 5,
+      maxFileSize: 3000,
+      previewFileType: 'any'
+    });
+  }
 
   constructor(public tableService: TableService, public loginService: LoginService, private modalService: BsModalService) {
   }
@@ -62,6 +63,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   // ngOnInit ngAfterContentInit 执行 在 ngFor 组织模板之前？？？
   ngOnInit() {
+    this.initFileUpload();
     this.getDatas();
 
     this.fileFilterControl.valueChanges
@@ -76,6 +78,7 @@ export class TableComponent implements OnInit, OnDestroy {
   getDatas(): void {
     this.tableService.getDatas().subscribe(data => {
 
+      // tslint:disable-next-line:prefer-const
       let isSuccesed = data.state;
       if (!isSuccesed) {
         alert('查询个人文件信息失败：' + data.error);
