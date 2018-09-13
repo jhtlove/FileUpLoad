@@ -30,10 +30,10 @@
     <ul class="sidebar-menu tree" data-widget="tree">
       <!-- <li class="header"></li> -->
       <!-- Optionally, you can add icons to the links -->
-      <li class="active">
-        <a href="javascript:void(0)">
+      <li *ngFor="let item of menus;let i=index" [class.active]='selectedId===i' (click)="select(i)">
+        <a routerLink="{{item.url}}">
           <i class="fa fa-link"></i>
-          <span>内外网文件转换</span>
+          <span>{{item.name}}</span>
         </a>
       </li>
       <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->

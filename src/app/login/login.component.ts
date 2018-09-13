@@ -20,8 +20,12 @@ export class LoginComponent implements OnInit {
       increaseArea: '20%'  // optional
     });
     let userName = localStorage.getItem('currentUser');
+    let pwd = localStorage.getItem('currentPwd');
     if (userName) {
       this.user.userName = userName;
+    }
+    if (pwd) {
+      this.user.pwd = pwd;
     }
   }
 
@@ -34,6 +38,7 @@ export class LoginComponent implements OnInit {
     if (res === true) {
       if (isChecked) {
         localStorage.setItem('currentUser', this.user.userName);
+        localStorage.setItem('currentPwd', this.user.pwd);
       }
       sessionStorage.setItem('logSuccessed', 'true');
       sessionStorage.setItem('currentUser', this.user.userName);

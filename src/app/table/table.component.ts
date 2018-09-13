@@ -3,8 +3,6 @@ import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { TableService } from './table.service';
 import { LoginService } from '../service/login.service';
 import { debounceTime } from 'rxjs/operators';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { BsModalService } from 'ngx-bootstrap/modal';
 // import * as $ from 'jquery';
 // import * as bootstrap from "bootstrap";
 
@@ -15,8 +13,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit, OnDestroy {
-
-  modalRef: BsModalRef;
+  head = '内外网文件转换';
+  subhead = '个人文件';
 
   display = false;
 
@@ -34,9 +32,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   uploadedFiles: any[] = [];
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
 
   initFileUpload() {
     let inputElem: any = $('#input-id');
@@ -50,7 +45,7 @@ export class TableComponent implements OnInit, OnDestroy {
     });
   }
 
-  constructor(public tableService: TableService, public loginService: LoginService, private modalService: BsModalService) {
+  constructor(public tableService: TableService, public loginService: LoginService) {
   }
 
   // DoCheck
