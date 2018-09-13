@@ -34,7 +34,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
 
   initFileUpload() {
-    let inputElem: any = $('#input-id');
+    const inputElem: any = $('#input-id');
     inputElem.fileinput({
       uploadUrl: 'test/upload',
       language: 'zh',
