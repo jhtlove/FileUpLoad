@@ -20,6 +20,8 @@ import { FileFilterPipe } from './table/file-filter.pipe';
 import { FileSortPipe } from './table/file-sort.pipe';
 import { Test1Component } from './test1/test1.component';
 import { Test2Component } from './test2/test2.component';
+import { ModalBoxComponent } from './modal-box/modal-box.component';
+import { FileInputComponent } from './file-input/file-input.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { Test2Component } from './test2/test2.component';
     FileFilterPipe,
     FileSortPipe,
     Test1Component,
-    Test2Component
+    Test2Component,
+    ModalBoxComponent,
+    FileInputComponent
   ],
   imports: [
     BrowserModule,

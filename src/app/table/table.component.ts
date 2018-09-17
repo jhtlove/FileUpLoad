@@ -32,19 +32,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   uploadedFiles: any[] = [];
 
-
-  initFileUpload() {
-    const inputElem: any = $('#input-id');
-    inputElem.fileinput({
-      uploadUrl: 'test/upload',
-      language: 'zh',
-      // uploadAsync:false, // 是否异步上传;异步：同时发送多个请求
-      maxFileCount: 5,
-      maxFileSize: 3000,
-      previewFileType: 'any'
-    });
-  }
-
   constructor(public tableService: TableService, public loginService: LoginService) {
   }
 
@@ -58,7 +45,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   // ngOnInit ngAfterContentInit 执行 在 ngFor 组织模板之前？？？
   ngOnInit() {
-    this.initFileUpload();
     this.getDatas();
 
     this.fileFilterControl.valueChanges
@@ -86,18 +72,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   find() {
     this.getDatas();
-  }
-
-  close() {
-    this.display = false;
-  }
-
-  download() {
-    console.log('下载');
-  }
-
-  delFile() {
-    console.log('删除：');
   }
 
   toggle(field: string) {
